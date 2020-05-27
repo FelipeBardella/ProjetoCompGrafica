@@ -1,0 +1,120 @@
+@font-face {
+    font-family: "Effra light";
+    src: url("./fonts/Effra_Std_Lt.WOFF");
+}
+
+@font-face {
+    font-family: "Effra";
+    src: url("./fonts/Effra_Std_Bd.WOFF");
+}
+
+body {
+    margin: 0;
+}
+
+h1 {
+    font-family: "Effra", Arial, Helvetica, sans-serif;
+}
+
+body * {
+    font-family: "Effra light", Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}
+
+button {
+    background: #132AF4;
+    padding: 10px;
+    text-align: center;
+    color: #fff;
+    font-size: 24px;
+    border-radius: 7px;
+    cursor: pointer;
+    transition: all 0.2s ease-out;
+}
+
+button:hover {
+    background: #132af4d9
+}
+
+.title-div {
+    background: #132AF4;
+    padding: 10px;
+    text-align: center;
+}
+
+.title-div * {
+    color: #fff;
+}
+
+#form-imposto {
+    display: flex;
+    flex-direction: column;
+    padding: 8px 16px;
+}
+
+#form-imposto>div {
+    display: flex;
+    flex-direction: column;
+    padding: 16px 0
+}
+
+input {
+    background: #ebedff;
+    mix-blend-mode: multiply;
+    border: 1px solid #7280ff;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+    padding: 4px 16px;
+    font-size: 18px;
+    margin: 8px 0 0 0;
+    outline: none;
+    transition: all 0.2s ease-out;
+}
+
+input:hover {
+    background: #f6f7ff
+}
+
+.radio_button_div {
+    display: inline-flex;
+    margin: 6px 0 6px 0;
+}
+
+.radio_button_div label {
+    padding: 7px 11px;
+    color: #000;
+    border: 2px solid #7280ff;
+    cursor: pointer;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.radio_button_div label:hover {
+    background-color: #7280ff70 !important;
+}
+
+input[type=radio]:checked+label {
+    background-color: #7280ff !important;
+    color: #ffffff;
+}
+
+.radio_button_div input[type=radio] {
+    visibility: hidden;
+    width: 0;
+}
+
+.left-input {
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+    border-right: 1px solid #7280ff;
+}
+
+.right-input {
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    border-left: 1px solid #7280ff;
+}
