@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificador Imposto de Renda</title>
+</head>
+<body>
+    <div>
+        <h1>
+            Você sabe se necessita declarar o Imposto de Renda 2020?
+        </h1>
+    </div>
+    <form>
+        <div class="nome">
+            <label for="nome">Seu nome:</label>
+            <input type="text" name="nome" id="nome" maxlength="40" required tabindex="1">
+        </div>
+        <div class="idade">
+            <label for="idade">Sua idade:</label>
+            <input type="number" name="idade" id="idade" required tabindex="2">
+        </div>
+        <div class="rendaTributavel">
+            <label for="rendaTributavel">Qual é a soma do seu rendimento tributável?</label>
+            <input type="number" name="rendaTributavel" placeholder="R$" id="rendaTributavel" required tabindex="3">
+        </div>
+        <div class="rendaIsenta">
+            <label for="rendaIsenta">Qual é a soma de rendimentos isentos, não tributáveis ou tributados exclusivamente na fonte?</label>
+            <input type="number" name="rendaIsenta" id="rendaIsenta" placeholder="R$" required tabindex="4">
+        </div>
+        <div class="ganhoCapital">
+            <label>Você teve ganho de capital e recebeu através de bens ou direitos?</label>
+            <div>
+                <input type="radio" name="ganho" id="ganho-s" value="sim">
+                <label for="ganho-s">Sim</label>
+            </div>
+            <div>
+                <input type="radio" name="ganho" id="ganho-n" value="nao">
+                <label for="ganho-n">Não</label>
+            </div>
+        </div>
+        <div class="imoveis">
+            <div class="imoveis1"></div>
+                <label>Você vendeu imóveis residenciais?</label>
+                <div>
+                    <input type="radio" name="imoveis" id="imoveis-s" value="sim">
+                    <label for="imoveis-s">Sim</label>
+                </div>
+                <div>
+                    <input type="radio" name="imoveis" id="imoveis-n" value="nao">
+                    <label for="imoveis-n">Não</label>
+                </div>
+            </div>
+            <div class="imoveis2">
+                <label>Nesse contrato, optou pela isenção do imposto de renda sobre o ganho de capital?</label>
+                <div>
+                    <input type="radio" name="contrato" id="contrato-s" value="sim">
+                    <label for="contrato-s">Sim</label>
+                </div>
+                <div>
+                    <input type="radio" name="contrato" id="contrato-n" value="nao">
+                    <label for="contrato-n">Não</label>
+                </div>
+            </div>
+        </div>
+        <div class="operacoesBolsa">
+            <label>Possui operações na bolsa?</label>
+            <div>
+                <input type="radio" name="operacoes" id="operacoes-s" value="sim">
+                <label for="operacoes-s">Sim</label>
+            </div>
+            <div>
+                <input type="radio" name="operacoes" id="operacoes-n" value="nao">
+                <label for="operacoes-n">Não</label>
+            </div>
+        </div>
+        <div class="atividadeRural">
+            <div class="atividade1">
+                <label>Você realizou alguma atividade rural?</label>
+                <div>
+                    <input type="radio" name="atividade" id="atividade-s" value="sim">
+                    <label for="atividade-s">Sim</label>
+                </div>
+                <div>
+                    <input type="radio" name="atividade" id="atividade-n" value="nao">
+                    <label for="atividade-n">Não</label>
+                </div>
+            </div>
+            <div class="atividade2">
+                <label for="receitaAtividade">Qual é a sua receita bruta no ano-calendário de 2019?</label>
+                <input type="number" name="receitaAtividade" id="receitaAtividade" placeholder="R$" required tabindex="5">
+            </div>
+            <div class="atividade3">
+                <label for="valorTotalRural">Qual é o valor total de seus bens ou direitos?</label>
+                <input type="number" name="valorTotalRural" id="valorTotalRural" placeholder="R$" required tabindex="6">
+            </div>
+        </div>
+        <div class="posseTerreno">
+            <label>Você teve posse de algum terreno?</label>
+            <div>
+                <input type="radio" name="posse" id="posse-s" value="sim">
+                <label for="posse-s">Sim</label>
+            </div>
+            <div>
+                <input type="radio" name="posse" id="posse-n" value="nao">
+                <label for="posse-n">Não</label>
+            </div>
+        </div>
+        <div class="estrangeiro">
+            <label>Você é estrangeiro e passou a ser residente no Brasil?</label>
+            <div>
+                <input type="radio" name="residente" id="residente-s" value="sim">
+                <label for="residente-s">Sim</label>
+            </div>
+            <div>
+                <input type="radio" name="residente" id="residente-n" value="nao">
+                <label for="residente-n">Não</label>
+            </div>
+        </div>
+
+    </form>
+
+</body>
+</html>
