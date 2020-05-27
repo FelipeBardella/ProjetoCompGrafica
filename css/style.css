@@ -1,11 +1,11 @@
 @font-face {
     font-family: "Effra light";
-    src: url("./fonts/Effra_Std_Lt.WOFF");
+    src: url("../fonts/Effra_Std_Lt.WOFF");
 }
 
 @font-face {
     font-family: "Effra";
-    src: url("./fonts/Effra_Std_Bd.WOFF");
+    src: url("../fonts/Effra_Std_Bd.WOFF");
 }
 
 body {
