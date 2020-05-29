@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Verificador Imposto de Renda</title>
     <link rel="stylesheet" href="./css/style.css" id="theme-stylesheet">
+
+    <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src = "js/js.js"></script>
+    
 </head>
 
 <body>
@@ -14,23 +18,23 @@
             Você sabe se necessita declarar o Imposto de Renda 2020?
         </h1>
     </div>
-    <form id="form-imposto">
+    <form id="form-imposto" onsubmit="return false">
         <div class="nome">
             <label for="nome">Seu nome:</label>
-            <input type="text" name="nome" id="nome" maxlength="40" required tabindex="1">
+            <input type="text" name="nome" id="nome" maxlength="40"  tabindex="1">
         </div>
         <div class="idade">
             <label for="idade">Sua idade:</label>
-            <input type="number" name="idade" id="idade" required tabindex="2">
+            <input type="number" name="idade" id="idade"  tabindex="2">
         </div>
         <div class="rendaTributavel">
             <label for="rendaTributavel">Qual é a soma do seu rendimento tributável?</label>
-            <input type="number" name="rendaTributavel" placeholder="R$" id="rendaTributavel" required tabindex="3">
+            <input type="number" name="rendaTributavel" placeholder="R$" id="rendaTributavel"  tabindex="3">
         </div>
         <div class="rendaIsenta">
             <label for="rendaIsenta">Qual é a soma de rendimentos isentos, não tributáveis ou tributados exclusivamente
                 na fonte?</label>
-            <input type="number" name="rendaIsenta" id="rendaIsenta" placeholder="R$" required tabindex="4">
+            <input type="number" name="rendaIsenta" id="rendaIsenta" placeholder="R$" tabindex="4">
         </div>
         <div class="ganhoCapital">
             <label>Você teve ganho de capital e recebeu através de bens ou direitos?</label>
@@ -106,7 +110,8 @@
                 <label class="right-input" for="residente-n">Não</label>
             </div>
         </div>
-        <button type="submit">Calcular</button>
+        <button type="submit" id= "btn-calcular">Calcular</button>
+        
     </form>
 
 </body>
