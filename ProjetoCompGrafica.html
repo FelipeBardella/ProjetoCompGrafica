@@ -18,23 +18,23 @@
             Você sabe se necessita declarar o Imposto de Renda 2020?
         </h1>
     </div>
-    <form id="form-imposto" onsubmit="return false">
+    <form id="form-imposto" >
         <div class="nome">
             <label for="nome">Seu nome:</label>
-            <input type="text" name="nome" id="nome" maxlength="40"  tabindex="1">
+            <input type="text" name="nome" id="nome" maxlength="40"  tabindex="1" required focus>
         </div>
         <div class="idade">
             <label for="idade">Sua idade:</label>
-            <input type="number" name="idade" id="idade"  tabindex="2">
+            <input type="number" name="idade" id="idade"  tabindex="2" required>
         </div>
         <div class="rendaTributavel">
             <label for="rendaTributavel">Qual é a soma do seu rendimento tributável?</label>
-            <input type="number" name="rendaTributavel" placeholder="R$" id="rendaTributavel"  tabindex="3">
+            <input type="number" name="rendaTributavel" placeholder="R$" id="rendaTributavel"  tabindex="3" required>
         </div>
         <div class="rendaIsenta">
             <label for="rendaIsenta">Qual é a soma de rendimentos isentos, não tributáveis ou tributados exclusivamente
                 na fonte?</label>
-            <input type="number" name="rendaIsenta" id="rendaIsenta" placeholder="R$" tabindex="4">
+            <input type="number" name="rendaIsenta" id="rendaIsenta" placeholder="R$" tabindex="4" required>
         </div>
         <div class="ganhoCapital">
             <label>Você teve ganho de capital e recebeu através de bens ou direitos?</label>

@@ -35,3 +35,11 @@ Bens e direitos
 8 – Você teve posse de algum terreno?
 
 9 – É estrangeiro e passou a ser residente no Brasil?
+
+ETAPAS:
+
+//1. pegar todos os dados dos inputs
+//2. verificar se o cara colocou valor
+//    2.1 se não colocou valor em todos os inputs, da um alert falando pra ele preencher
+//3. verificar se deve declarar ou não
+//4. mostrar para o usuário se deve ou não
