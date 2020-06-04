@@ -81,7 +81,7 @@ const events = [
     {
         seletor: "#btn-calcular",
         event: "click",
-        eventFunction: validateForm,
+        eventFunction: () => $("#form-imposto").validate(formRules),
         isRadio: false
     },
     {
@@ -101,7 +101,6 @@ const events = [
 ]
 const hide = selector => $(selector).hide();
 const show = selector => $(selector).show();
-const validateForm = () => $("#form-imposto").validate(formRules);
 const printReasonsToDeclare = motivo => $("#resultados").append(`<li>${motivo}</li>`)
 const setEvents = () => events
     .map(event => $(event.seletor)
