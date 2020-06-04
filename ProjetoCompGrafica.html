@@ -18,7 +18,7 @@
             Você sabe se necessita declarar o Imposto de Renda 2020?
         </h1>
     </div>
-    <form id="form-imposto" >
+    <form id="form-imposto" onsubmit = "return false" >
         <div class="nome">
             <label for="nome">Seu nome:</label>
             <input type="text" name="nome" id="nome" maxlength="40"  tabindex="1" required focus>
@@ -114,6 +114,15 @@
         
     </form>
 
+    <div id= "deveDeclarar">
+        <h2>Você deve declarar</h2>
+        <p>Esses são os motivos nos quais deve declarar:</p>
+        <ul id="resultados"></ul>
+    </div>
+    <div id="naoDeveDeclarar">
+        <h2>Você não deve declara</h2>
+        <p>Baseado nas suas respostas, você não precisa declarar o imposto de renda.</p>
+    </div>
 </body>
 
 </html>

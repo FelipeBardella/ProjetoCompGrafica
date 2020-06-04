@@ -1,13 +1,49 @@
 
 
 $(function () {
-
+    $("#deveDeclarar").hide();
+    $("#naoDeveDeclarar").hide();
     function main() {
         const motivosIR = []
         if (rendaTributavel()) {
-            motivosIR.push("textoIR");
+            motivosIR.push("1");
         }
-        console.log(motivosIR);
+        if (rendaIsenta()) {
+            motivosIR.push("2");
+        }
+        if (receitaAtividade()) {
+            motivosIR.push("3");
+        }
+        if (valorTotalRural()) {
+            motivosIR.push("4");
+        }
+        if (ganhoCapital()) {
+            motivosIR.push("5");
+        }
+        if (imovel()) {
+            motivosIR.push("6");
+        }
+        if (imovel2()) {
+            motivosIR.push("7");
+        }
+        if (operacoesBolsa()) {
+            motivosIR.push("8");
+        }
+        if (atividade1()) {
+            motivosIR.push("9");
+        }
+
+        $("form[id='form-imposto']").hide();
+        
+        if (motivosIR.length == 0){
+            $("#naoDeveDeclarar").show();
+            return;
+        }
+        $("#deveDeclarar").show();
+       for(var i = 0;i < motivosIR.length;i++){
+           $("#resultados").append(`
+           <li>${motivosIR[i]}</li>`);
+        }
     }
     // Inputs 
     function rendaTributavel() {
@@ -18,7 +54,7 @@ $(function () {
     }
     //
     function receitaAtividade() {
-        return $("receitaAtividade").value >= 142798, 50;
+        return $("receitaAtividade").value >= 142798.50;
     }
     function valorTotalRural() {
         return (document.getElementById("valorTotalRural").value >= 300000);
@@ -34,7 +70,7 @@ $(function () {
         return $("input[name='imoveis']:checked")[0].value == 'sim';
     }
     function imovel2() {
-        return $("input[name='imoveis2']:checked)")[0].value == 'sim';
+        return $("input[name='contrato']:checked")[0].value == 'sim';
     }
     function operacoesBolsa() {
         return $("input[name='operacoes']:checked")[0].value == 'sim';
@@ -45,7 +81,7 @@ $(function () {
 
     //Verificando se os Radios Buttons foram selecionados
     function verificandoGanhoCapital() {
-        if ($("input[name='ganho']").html($input.attr("checked")) == false){
+        if (ganhoCapital() == false ){
             console.log("Preencha sim ou não");
         }
     }
@@ -53,7 +89,7 @@ $(function () {
         return $("input[name='imoveis']").prop ('checked', true);
     }
     function verificandoImovel2() {
-        return $("input[name='imoveis2']").prop ('checked', true);
+        return $("input[name='contrato']").prop ('checked', true);
     }
     function verficandoOperacoesBolsa() {
         return $("input[name='operacoes']").prop ('checked', true);
