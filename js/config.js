@@ -7,7 +7,10 @@ const parseNumber = number => {
 };
 const formRules = {
     rules: {
-        idade: "required",
+        idade: {
+            required: true,
+            min: 1
+        },
         rendaTributavel: "required",
         rendaIsenta: "required",
         ganho: "required",
@@ -21,7 +24,7 @@ const formRules = {
         residente: "required",
     },
     messages: {
-        idade: "Preencha este campo",
+        idade: "Coloque sua idade corretamente",
         rendaTributavel: "Preencha este campo",
         rendaIsenta: "Preencha este campo",
         ganho: "Preencha este campo",
@@ -89,8 +92,8 @@ const inputs = [
     },
     {
         seletor: "#idade",
-        condition: (valor) => valor,
-        text: "A soma do seu rendimento tributável é superior ou igual a 28.559,70 ",
+        condition: (valor) => false,
+        text: "",
         mask: "000"
     },
 ];
