@@ -6,6 +6,7 @@ $(() => {
         ".contrato"
     ].map(id => hide(id))
     setEvents()
+    setMasks()
 });
 
 const calcular = () => {
