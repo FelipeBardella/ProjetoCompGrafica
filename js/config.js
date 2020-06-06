@@ -1,3 +1,10 @@
+const moneyMask = "000.000.000.000.000,00";
+const parseNumber = number => {
+    number = number.toString()
+    number = number.replace(/[.]/g, "")
+    number = number.replace(/[,]/g, ".")
+    return Number(number)
+};
 const formRules = {
     rules: {
         idade: "required",
@@ -27,9 +34,9 @@ const formRules = {
         posse: "Preencha este campo",
         residente: "Preencha este campo",
     },
-    errorPlacement: (error, element) => error.appendTo(`.error-${element[0].id.split("-")[0]}`),
+    errorPlacement: (error, element) => console.log(element[0].value) || error.appendTo(`.error-${element[0].id.split("-")[0]}`),
     submitHandler: calcular,
-}
+};
 const inputs = [
     {
         seletor: "input[name='ganho']:checked",
@@ -58,23 +65,33 @@ const inputs = [
     },
     {
         seletor: "#receitaAtividade",
-        condition: (valor) => valor >= 142798.50,
-        text: "Receita bruta no ano-calendário de 2019 em atividade rurais foi superior ou igual a 142.798,50 reais"
+        condition: (valor) => parseNumber(valor) >= 142798.50,
+        text: "Receita bruta no ano-calendário de 2019 em atividade rurais foi superior ou igual a 142.798,50 reais",
+        mask: moneyMask
     },
     {
         seletor: "#valorTotalRural",
-        condition: (valor) => valor >= 300000,
-        text: "Total de seus bens ou direitos são superiores ou iguais a 300.000"
+        condition: (valor) => parseNumber(valor) >= 300000,
+        text: "Total de seus bens ou direitos são superiores ou iguais a 300.000",
+        mask: moneyMask
     },
     {
         seletor: "#rendaIsenta",
-        condition: (valor) => valor >= 40000,
-        text: "A soma de rendimentos isentos, não tributáveis ou tributados exclusivamente na fonte são superiores a 40.000 reais"
+        condition: (valor) => parseNumber(valor) >= 40000,
+        text: "A soma de rendimentos isentos, não tributáveis ou tributados exclusivamente na fonte são superiores a 40.000 reais",
+        mask: moneyMask
     },
     {
         seletor: "#rendaTributavel",
-        condition: (valor) => valor >= 28559.70,
-        text: "A soma do seu rendimento tributável é superior ou igual a 28.559,70 "
+        condition: (valor) => parseNumber(valor) >= 28559.70,
+        text: "A soma do seu rendimento tributável é superior ou igual a 28.559,70 ",
+        mask: moneyMask
+    },
+    {
+        seletor: "#idade",
+        condition: (valor) => valor,
+        text: "A soma do seu rendimento tributável é superior ou igual a 28.559,70 ",
+        mask: "000"
     },
 ];
 const events = [
@@ -98,7 +115,7 @@ const events = [
         onFalse: () => hide(".contrato"),
         isRadio: true
     },
-]
+];
 const hide = selector => $(selector).hide();
 const show = selector => $(selector).show();
 const printReasonsToDeclare = motivo => motivo && $("#resultados").append(`<li>${motivo}</li>`)
@@ -111,6 +128,14 @@ const setEvents = () => events
                 event.onFalse(e)
             })
     )
+const setMasks = () => inputs
+    .filter(input => input.mask)
+    .map(input => {
+        $(input.seletor)
+            .mask(input.mask, {
+                reverse: true,
+            })
+    })
 
 const getReasonsToDeclare = () => inputs
     .map(input => {

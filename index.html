@@ -5,19 +5,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Verificador Imposto de Renda</title>
-    <link rel="stylesheet" href="./css/style.css" id="theme-stylesheet">
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="js/main.js"></script>
-    <script src="js/config.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.2/dist/jquery.validate.js"></script>
+    <link rel="stylesheet" href="css/style.css" id="theme-stylesheet">
+    <meta name="theme-color" content="#132AF4">
+    <script defer src="js/plugins/jquery.min.js"></script>
+    <script defer src="js/plugins/jquery.validate.js"></script>
+    <script defer src="js/plugins/jquery.mask.js"></script>
+    <script defer src="js/main.js"></script>
+    <script defer src="js/config.js"></script>
 
 </head>
 
 <body>
     <div class="title-div">
         <h1>
-            Você sabe se necessita declarar o Imposto de Renda 2020?
+            Você necessita declarar o Imposto de Renda 2020?
         </h1>
     </div>
     <form id="form-imposto" onsubmit="return false">
@@ -27,18 +28,18 @@
         </div>
         <div class="idade">
             <label for="idade">Sua idade:</label>
-            <input type="number" name="idade" id="idade" tabindex="2" required>
+            <input type="text" name="idade" id="idade" tabindex="2" required>
             <div class="error error-idade"></div>
         </div>
         <div class="rendaTributavel">
             <label for="rendaTributavel">Qual é a soma do seu rendimento tributável?</label>
-            <input type="number" name="rendaTributavel" placeholder="R$" id="rendaTributavel" tabindex="3" required>
+            <input type="text" name="rendaTributavel" placeholder="R$" id="rendaTributavel" tabindex="3" required>
             <div class="error error-rendaTributavel"></div>
         </div>
         <div class="rendaIsenta">
             <label for="rendaIsenta">Qual é a soma de rendimentos isentos, não tributáveis ou tributados exclusivamente
                 na fonte?</label>
-            <input type="number" name="rendaIsenta" id="rendaIsenta" placeholder="R$" tabindex="4" required>
+            <input type="text" name="rendaIsenta" id="rendaIsenta" placeholder="R$" tabindex="4" required>
             <div class="error error-rendaIsenta"></div>
         </div>
         <div class="ganhoCapital">
@@ -94,12 +95,12 @@
         </div>
         <div class="receitaAtividade">
             <label for="receitaAtividade">Qual é a sua receita bruta no ano-calendário de 2019?</label>
-            <input type="number" name="receitaAtividade" id="receitaAtividade" placeholder="R$" required tabindex="5">
+            <input type="text" name="receitaAtividade" id="receitaAtividade" placeholder="R$" required tabindex="5">
             <div class="error error-receitaAtividade"></div>
         </div>
         <div class="valorTotalRural">
             <label for="valorTotalRural">Qual é o valor total de seus bens ou direitos?</label>
-            <input type="number" name="valorTotalRural" id="valorTotalRural" placeholder="R$" required tabindex="6">
+            <input type="text" name="valorTotalRural" id="valorTotalRural" placeholder="R$" required tabindex="6">
             <div class="error error-valorTotalRural"></div>
         </div>
         <div class="posseTerreno">
