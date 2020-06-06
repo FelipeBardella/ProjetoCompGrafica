@@ -34,47 +34,47 @@ const inputs = [
     {
         seletor: "input[name='ganho']:checked",
         condition: (valor) => valor == 'sim',
-        text: "1"
+        text: "Teve ganho de capital e recebeu através de bens ou direitos"
     },
     {
         seletor: "input[name='imoveis']:checked",
         condition: (valor) => valor == 'sim',
-        text: "2"
+        text: false
     },
     {
         seletor: "input[name='contrato']:checked",
         condition: (valor) => valor == 'sim',
-        text: "3"
+        text: "Ao vender imóveis residenciais, optou pela isenção do imposto de renda sobre o ganho de capital"
     },
     {
         seletor: "input[name='operacoes']:checked",
         condition: (valor) => valor == 'sim',
-        text: "4"
+        text: "Fez operações na bolsa"
     },
     {
         seletor: "input[name='atividade']:checked",
         condition: (valor) => valor == 'sim',
-        text: "5"
-    },
-    {
-        seletor: "#valorTotalRural",
-        condition: (valor) => valor >= 300000,
-        text: "6"
+        text: false
     },
     {
         seletor: "#receitaAtividade",
         condition: (valor) => valor >= 142798.50,
-        text: "7"
+        text: "Receita bruta no ano-calendário de 2019 em atividade rurais foi superior ou igual a 142.798,50 reais"
+    },
+    {
+        seletor: "#valorTotalRural",
+        condition: (valor) => valor >= 300000,
+        text: "Total de seus bens ou direitos são superiores ou iguais a 300.000"
     },
     {
         seletor: "#rendaIsenta",
         condition: (valor) => valor >= 40000,
-        text: "8"
+        text: "A soma de rendimentos isentos, não tributáveis ou tributados exclusivamente na fonte são superiores a 40.000 reais"
     },
     {
         seletor: "#rendaTributavel",
         condition: (valor) => valor >= 28559.70,
-        text: "9"
+        text: "A soma do seu rendimento tributável é superior ou igual a 28.559,70 "
     },
 ];
 const events = [
@@ -101,7 +101,7 @@ const events = [
 ]
 const hide = selector => $(selector).hide();
 const show = selector => $(selector).show();
-const printReasonsToDeclare = motivo => $("#resultados").append(`<li>${motivo}</li>`)
+const printReasonsToDeclare = motivo => motivo && $("#resultados").append(`<li>${motivo}</li>`)
 const setEvents = () => events
     .map(event => $(event.seletor)
         .on(event.event,
