@@ -7,6 +7,7 @@ const parseNumber = number => {
 };
 const formRules = {
     rules: {
+        nome: "required",
         idade: {
             required: true,
             min: 1
@@ -24,7 +25,8 @@ const formRules = {
         residente: "required",
     },
     messages: {
-        idade: "Coloque sua idade corretamente",
+        nome: "Preencha este campo",
+        idade: "Preencha este campo",
         rendaTributavel: "Preencha este campo",
         rendaIsenta: "Preencha este campo",
         ganho: "Preencha este campo",
@@ -40,61 +42,98 @@ const formRules = {
     errorPlacement: (error, element) => console.log(element[0].value) || error.appendTo(`.error-${element[0].id.split("-")[0]}`),
     submitHandler: calcular,
 };
+const resultsIds = [
+    "ganho",
+    "rurais",
+    "bensEDireitos",
+    "renda",
+    "estrangeiro",
+]
 const inputs = [
+    {
+        seletor: "#nome",
+        condition: () => false,
+        text: "",
+        questionInfo: "Nome",
+    },
+    {
+        seletor: "#idade",
+        condition: () => false,
+        text: "",
+        mask: "000",
+        questionInfo: "Idade",
+    },
     {
         seletor: "input[name='ganho']:checked",
         condition: (valor) => valor == 'sim',
-        text: "Teve ganho de capital e recebeu através de bens ou direitos"
+        text: "<p>Teve ganho de capital e recebeu através de bens ou direitos.</p>",
+        resultId: "ganho",
+        questionInfo: "Ganho de Capital",
     },
     {
         seletor: "input[name='imoveis']:checked",
         condition: (valor) => valor == 'sim',
-        text: false
+        text: false,
+        questionInfo: "Vendeu Imoveis",
     },
     {
         seletor: "input[name='contrato']:checked",
         condition: (valor) => valor == 'sim',
-        text: "Ao vender imóveis residenciais, optou pela isenção do imposto de renda sobre o ganho de capital"
+        text: "<p>Ao vender imóveis residenciais, optou pela isenção do imposto de renda sobre o ganho de capital.</p>",
+        resultId: "ganho",
+        questionInfo: "Isenção de imposto no imovel",
     },
     {
         seletor: "input[name='operacoes']:checked",
         condition: (valor) => valor == 'sim',
-        text: "Fez operações na bolsa"
+        text: "<p>Fez operações na bolsa.</p>",
+        resultId: "ganho",
+        questionInfo: "Operações na bolsa",
     },
     {
         seletor: "input[name='atividade']:checked",
         condition: (valor) => valor == 'sim',
-        text: false
+        text: false,
+        questionInfo: "Atividade Rural",
     },
     {
         seletor: "#receitaAtividade",
         condition: (valor) => parseNumber(valor) >= 142798.50,
-        text: "Receita bruta no ano-calendário de 2019 em atividade rurais foi superior ou igual a 142.798,50 reais",
-        mask: moneyMask
+        text: "<p>Receita bruta no ano-calendário de 2019 em atividade rurais foi superior ou igual a R$ 142.798,50.</p>",
+        mask: moneyMask,
+        resultId: "rurais",
+        questionInfo: "Receita bruta de atividade rurais",
     },
     {
         seletor: "#valorTotalRural",
         condition: (valor) => parseNumber(valor) >= 300000,
-        text: "Total de seus bens ou direitos são superiores ou iguais a 300.000",
-        mask: moneyMask
+        text: "<p>Total de seus bens ou direitos são superiores ou iguais a R$ 300.000.</p>",
+        mask: moneyMask,
+        resultId: "bensEDireitos",
+        questionInfo: "Bens ou Direitos",
     },
     {
         seletor: "#rendaIsenta",
         condition: (valor) => parseNumber(valor) >= 40000,
-        text: "A soma de rendimentos isentos, não tributáveis ou tributados exclusivamente na fonte são superiores a 40.000 reais",
-        mask: moneyMask
+        text: "<p>A soma de rendimentos isentos, não tributáveis ou tributados exclusivamente na fonte são superiores a R$ 40.000.</p>",
+        mask: moneyMask,
+        resultId: "renda",
+        questionInfo: "Rendimentos Isentos",
     },
     {
         seletor: "#rendaTributavel",
         condition: (valor) => parseNumber(valor) >= 28559.70,
-        text: "A soma do seu rendimento tributável é superior ou igual a 28.559,70 ",
-        mask: moneyMask
+        text: "<p>A soma do seu rendimento tributável é superior ou igual a R$ 28.559,70.</p>",
+        mask: moneyMask,
+        resultId: "renda",
+        questionInfo: "Rendimentos Tributável",
     },
     {
-        seletor: "#idade",
-        condition: (valor) => false,
-        text: "",
-        mask: "000"
+        seletor: "input[name='residente']:checked",
+        condition: (valor) => valor == 'sim',
+        text: "<p>Passou à condição de residente no Brasil em qualquer mês e nessa condição no ano calendário.</p>",
+        resultId: "estrangeiro",
+        questionInfo: "Estrangeiro residente no Brasil",
     },
 ];
 const events = [
@@ -118,10 +157,58 @@ const events = [
         onFalse: () => hide(".contrato"),
         isRadio: true
     },
+    {
+        seletor: ".print",
+        event: "click",
+        eventFunction: () => {
+            [
+                ".print",
+                ".reload",
+                "#title",
+            ].map(selector => hide(selector));
+            window.print();
+            [
+                ".print",
+                ".reload",
+                "#title",
+            ].map(selector => show(selector));
+        },
+    },
+    {
+        seletor: ".reload",
+        event: "click",
+        eventFunction: () => {
+            window.location.reload();
+        },
+    },
 ];
 const hide = selector => $(selector).hide();
 const show = selector => $(selector).show();
-const printReasonsToDeclare = motivo => motivo && $("#resultados").append(`<li>${motivo}</li>`)
+const showName = () => {
+    const name = $("#nome")[0].value;
+    Array.from(document.querySelectorAll(".name")).map(element => element.textContent = name);
+}
+const printReasonsToDeclare = reason => reason?.text && $("#" + reason.resultId).append(`${reason.text}`);
+const removeUnusedReasonsTopics = topicId => ($("#" + topicId)[0].children.length <= 1) && hide("#" + topicId);
+const showUserData = () => {
+    const dadosTabela = $(".dados-tabela");
+    inputs
+        .map(input => {
+            const value = $(input.seletor)?.[0]?.value;
+            if (!value) return;
+            dadosTabela.append(`
+                <div>
+                    <div>
+                        <p>${input.questionInfo}</p>
+                    </div>
+                    <div>
+                        <p>${value}</p>
+                    </div>
+                </div>
+            `)
+        })
+        .filter(input => input);
+}
 const setEvents = () => events
     .map(event => $(event.seletor)
         .on(event.event,
@@ -139,10 +226,14 @@ const setMasks = () => inputs
                 reverse: true,
             })
     })
+const setDate = () => {
+    const [, , year] = new Intl.DateTimeFormat("pt-br").format(new Date()).split("/");
+    $("#date")[0].textContent = year;
+}
 
 const getReasonsToDeclare = () => inputs
     .map(input => {
         const value = $(input.seletor)?.[0]?.value
-        if (input.condition(value)) return input.text
+        if (input.condition(value)) return input
     })
     .filter(input => input);
