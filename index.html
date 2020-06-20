@@ -17,14 +17,14 @@
 
 <body>
     <div class="title-div">
-        <h1>
-            Você necessita declarar o Imposto de Renda 2020?
+        <h1 id="title">
+            Devo declarar o imposto de renda no ano de <span id="date">2020</span>
         </h1>
     </div>
     <form id="form-imposto" onsubmit="return false">
         <div class="nome">
             <label for="nome">Seu nome:</label>
-            <input type="text" name="nome" id="nome" maxlength="40" tabindex="1" focus>
+            <input type="text" name="nome" id="nome" maxlength="40" tabindex="1" autofocus>
         </div>
         <div class="idade">
             <label for="idade">Sua idade:</label>
@@ -71,7 +71,6 @@
                 <label class="right-input" for="contrato-nao">Não</label>
                 <div class="error error-contrato"></div>
             </div>
-        </div>
         </div>
         <div class="operacoesBolsa">
             <label>Possui operações na bolsa?</label>
@@ -128,13 +127,41 @@
     </form>
 
     <div id="deveDeclarar" class="results">
-        <h2>Você deve declarar</h2>
-        <p>Esses são os motivos nos quais deve declarar:</p>
-        <ul id="resultados"></ul>
+        <h2><span class="name"></span>, você deve declarar</h2>
+        <h3><b>Motivos</b></h3>
+        <div id="resultados">
+            <div id="renda">
+                <b>Renda:</b>
+            </div>
+            <div id="rurais">
+                <b>Atividades Rurais:</b>
+            </div>
+            <div id="ganho">
+                <b>Ganho Capital:</b>
+            </div>
+            <div id="bensEDireitos">
+                <b>Bens e Direitos:</b>
+            </div>
+            <div id="estrangeiro">
+                <b>Condição de Residente:</b>
+            </div>
+        </div>
+        <h3><b>Dados Fornecidos</b></h3>
+        <div id="dados">
+            <div class="dados-tabela"> </div>
+        </div>
+        <div class="buttons">
+            <a href="#" class="print">Imprimir</a>
+            <a href="#" class="reload">Fazer o cálculo novamente</a>
+        </div>
     </div>
     <div id="naoDeveDeclarar" class="results">
-        <h2>Você não deve declarar</h2>
-        <p>Baseado nas suas respostas, você não precisa declarar o imposto de renda.</p>
+        <h2><span class="name"></span>, você não deve declarar</h2>
+        <p>Baseado nas suas respostas, não precisa declarar o imposto de renda.</p>
+        <div class="buttons">
+            <a href="#" class="print">Imprimir</a>
+            <a href="#" class="reload">Fazer o cálculo novamente</a>
+        </div>
     </div>
 </body>
 
